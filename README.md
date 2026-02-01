@@ -66,7 +66,7 @@ flowchart LR
   end
 
   subgraph Drive[Google Drive]
-    DRIVE_FILES[Valuation files (CSV or Sheets)]
+    DRIVE_FILES["Valuation files (CSV or Sheets)"]
     DRIVE_LOGS[Pipeline logs]
   end
 
