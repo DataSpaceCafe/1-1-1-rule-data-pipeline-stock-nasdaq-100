@@ -1,0 +1,10 @@
+pandas>=2.0
+numpy>=1.24
+yfinance>=0.2
+python-dotenv>=1.0
+google-api-python-client>=2.100
+google-auth>=2.20
+google-auth-httplib2>=0.1.1
+google-auth-oauthlib>=1.0
+lxml>=4.9
+pandera>=0.20.0

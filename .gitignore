@@ -1,0 +1,18 @@
+.DS_Store
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Environment/config secrets
+config/.env
+config/credentials.json
+config/oauth_token.json
+config/service_account.json
+config/client_secret_*.json
+
+# Generated data and logs
+data/
+
+# Local scripts tokens (if any)
+scripts/credentials.json
