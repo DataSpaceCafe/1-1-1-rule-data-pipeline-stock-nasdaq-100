@@ -100,6 +100,40 @@ flowchart LR
   GEMINI --> EMAIL
 ```
 
+## Sequence Diagram
+```mermaid
+sequenceDiagram
+  title Nasdaq-100 1-1-1 Rule Pipeline Sequence
+  autonumber
+  actor User
+  participant Cron
+  participant Pipeline as Pipeline Job
+  participant Wiki as Wikipedia
+  participant YF as yfinance
+  participant Drive as Google Drive
+  participant Looker as Looker Studio
+  participant GAS as Apps Script
+  participant Gemini as Gemini 2.5 Flash
+  participant Email
+
+  User->>Cron: Schedule run (after market close)
+  Cron->>Pipeline: Execute pipeline_job
+  Pipeline->>Wiki: Fetch Nasdaq-100 tickers (optional)
+  alt Wiki unavailable
+    Pipeline->>Pipeline: Use fallback CSV
+  end
+  Pipeline->>YF: Fetch fundamentals
+  Pipeline->>Pipeline: Cleanse + compute valuations
+  Pipeline->>Drive: Upload valuation CSV (or Sheets)
+  Pipeline->>Drive: Upload log file
+  Drive->>Looker: Refresh data source
+  Cron->>GAS: Trigger analyzeStockWithGeminiAI
+  GAS->>Drive: Find latest valuation file
+  GAS->>Gemini: Generate analysis
+  Gemini->>Email: Return insights
+  GAS->>Email: Send report
+```
+
 ## คำอธิบายแต่ละขั้น
 ### Extract
 - `one_one_one_rule/extract_tickers.py`
